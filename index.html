@@ -1,13 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <h1> Hello word from java script</h1>
+    <div class="container">
+        <h1>Temperature Converter</h1>
+        <form id="converter-form">
+            <label for="celsius-input">Enter temperature in Celsius:</label>
+            <input type="number" id="celsius-input" placeholder="Celsius" required>
+            <input type="submit" value="Convert">
+        </form>
+        <div id="result">
+            <p id="fahrenheit-result">Fahrenheit: <span id="fahrenheit-value"></span></p>
+        </div>
+    </div>
 
-    <script src="./script.mjs"></script>
+    <script>
+        // JavaScript for temperature conversion
+        document.getElementById('converter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get the input value in Celsius
+            const celsius = parseFloat(document.getElementById('celsius-input').value);
+
+            // Check if the input is a valid number
+            if (!isNaN(celsius)) {
+                // Convert Celsius to Fahrenheit
+                const fahrenheit = (celsius * 9/5) + 32;
+                document.getElementById('fahrenheit-value').textContent = fahrenheit.toFixed(2) + " °F";
+            } else {
+                alert("Please enter a valid number for Celsius.");
+            }
+        });
+    </script>
 </body>
 </html>
